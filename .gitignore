@@ -1,0 +1,30 @@
+
+# dbt
+target/
+dbt_packages/
+dbt_modules/
+logs/
+
+# Python
+*.py[cod]
+*$py.class
+*.so
+__pycache__/
+.Python
+env/
+venv/
+ENV/git push -u origin main
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+*.log
+dbt_internal_packages/

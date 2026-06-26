@@ -1,0 +1,50 @@
+
+# Name your project! Project names should be lowercase and use underscores as separators
+# See more in the docs: https://docs.getdbt.com/docs/configuring-projects/using-profiles.yml
+
+name: 'dbt_learning'
+version: '1.0.0'
+config-version: 2
+
+# This setting configures which "profile" dbt uses for this project.
+profile: 'dbt_learning'
+
+# These configurations specify where dbt should look for different types of files.
+# The `source-paths` config, for example, tells dbt where to find the SQL files in your
+# dbt project. You may customize these paths here.
+
+model-paths: ["models"]
+analysis-paths: ["analysis"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+target-path: "target"  # directory which will store compiled SQL files
+clean-targets:         # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+
+# Configuring models
+# Full documentation: https://docs.getdbt.com/docs/configuring-models
+
+models:
+  dbt_learning:
+    # Bronze layer - raw data ingestion (views)
+    bronze:
+      +materialized: view
+      +schema: bronze
+      +tags: ["bronze", "raw"]
+    
+    # Silver layer - cleaned and standardized data (tables)
+    silver:
+      +materialized: table
+      +schema: silver
+      +tags: ["silver", "transformed"]
+    
+    # Gold layer - business-ready data (tables)
+    gold:
+      +materialized: table
+      +schema: gold
+      +tags: ["gold", "analytics"]
+
+seeds:
+  +schema: raw

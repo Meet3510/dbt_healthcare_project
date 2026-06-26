@@ -1,0 +1,16 @@
+version: 2
+sources:
+    - name: raw_data 
+      database: dbt_db
+      schema: bronze 
+      tables:
+        - name: bronze_providers
+        - name: bronze_Careplans
+        - name: bronze_conditions
+        - name: bronze_encounters
+        - name: bronze_patients
+        - name: bronze_payers
+        - name: bronze_organizations
+
+
+  
