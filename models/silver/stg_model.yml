@@ -1,0 +1,102 @@
+version: 2
+
+models:
+  - name: stg_careplans
+    columns:
+        - name: careplans_id
+          tests: 
+            - unique
+            - not_null
+        - name: careplan_start_date
+        - name: careplan_stop_date
+        - name: patient_id
+          tests:
+            - not_null
+        - name: encounters_id
+          tests: 
+            - not_null
+        - name: careplan_code
+        - name: careplan_description
+        - name: careplan_reasoncode
+        - name: careplan_reason_description
+    
+  - name: stg_conditions
+    columns:
+        - name: conditions_startdate
+        - name: conditions_stopdate
+        - name: conditions_patient_id
+          tests:
+            - not_null
+        - name: conditions_encounter_id
+          tests: 
+            - not_null
+        - name: conditions_description
+  - name: stg_encounters
+    columns:
+        - name: encounters_id
+          tests: 
+            - unique
+            - not_null
+        - name: encounters_start_date
+        - name: encounters_end_date
+        - name: patient_id
+          tests:
+            - not_null
+        - name: organization_id
+          tests: 
+            - not_null
+        - name: provider_id
+          tests: 
+            - not_null
+        - name: payer_id
+          tests: 
+            - not_null
+        - name: encounters_class
+        - name: encounters_description
+        - name: total_claim_cost
+        - name: payer_coverage
+        - name: reason_code
+        - name: reason_description
+
+  - name: stg_organizations
+    columns: 
+      - name: organizations_id
+        tests: 
+         - unique
+         - not_null
+      - name: organizations_name
+      - name: organizations_address
+      - name: organizations_city
+      - name: organizations_state
+      - name: organizations_phone
+      - name: organizations_revenue
+      - name: organizations_utilization
+
+  - name: stg_patients
+    columns:
+     - name: patient_id
+       tests:
+        - unique
+        - not_null
+
+  - name: stg_payers
+    columns: 
+    - name: payer_id
+      tests: 
+        - unique
+        - not_null
+
+
+  - name: stg_providers
+    columns:
+    - name: provider_id
+      tests: 
+        - unique
+        - not_null
+    - name: organization_id
+      tests: 
+        - not_null
+
+
+        
+           
