@@ -27,3 +27,6 @@ ENV/
 Thumbs.db
 *.log
 dbt_internal_packages/
+
+# Credentials
+profiles.yml
