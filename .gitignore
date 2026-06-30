@@ -13,8 +13,7 @@ __pycache__/
 .Python
 env/
 venv/
-ENV/git push -u origin main
-
+ENV/
 # IDE
 .vscode/
 .idea/
