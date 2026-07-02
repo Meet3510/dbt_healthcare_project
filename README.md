@@ -1,15 +1,21 @@
-# dbt Learning Project
+# 📊 dbt Healthcare Analytics Project (Synthea COVID-19)
 
-This is a dbt project for learning and practice using the Bronze-Silver-Gold medallion architecture.
+A production-grade ELT (Extract, Load, Transform) data pipeline constructed using **dbt (Data Build Tool)** and the **Snowflake Cloud Data Warehouse**. This project processes synthetic clinical records from the Synthea COVID-19 dataset, integrates manual clinical configurations dumped via Excel, and transforms raw data structures into clean, analytics-ready data models following the **Medallion Architecture** framework.
+
+---
+
+## Project Architecture & Data Lineage
+
+The data pipeline strictly adheres to the Medallion Architecture pattern, segregating data processing logic into three distinct layers to ensure modularity, data quality, and high-performance querying in BI tools like Tableau.
+
 
 ## Project Structure
 
 - **models/**: Contains your dbt models (SQL files)
-  - **bronze/**: Raw data layer - minimal transformations, views of source systems
-  - **silver/**: Cleaned and standardized data - business logic applied, tables
-  - **gold/**: Analytics-ready data - business aggregations and marts, tables
-- **tests/**: Contains custom tests for your models
--
+  - **bronze/**: Raw data layer - minimal transformations, views of source systems mapped via `sources.yml`
+  - **silver/**: Cleaned and standardized data - business logic applied, schemas tested and documented via `stg_model.yml`
+  - **gold/**: Analytics-ready data -  star-schema marts (Facts and Dimensions), performance-optimized tables
+- **tests/**: Contains custom data validation tests for your models
 
 ## Medallion Architecture Layers
 
@@ -29,7 +35,7 @@ This is a dbt project for learning and practice using the Bronze-Silver-Gold med
     * `unique` and `not_null` constraints applied to critical primary keys (e.g., `patient_id`, `encounter_id`).
     * Column-level documentation acting as a live, self-updating data dictionary.
 
-### 🟨 Gold Layer (Analytics & Marts Layer)
+### Gold Layer (Analytics & Marts Layer)
 * **Directory**: `models/gold/`
 * **Purpose**: Houses highly optimized, business-level metric tables and star-schema models ready for downstream dashboards.
 * **Implementation**: Combines clean patient clinical records with the static configuration metadata ingested from the Excel sheet via optimized Snowflake joins, building rich Fact tables (`fct_`) and Dimension tables (`dim_`).
