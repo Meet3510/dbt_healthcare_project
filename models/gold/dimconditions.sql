@@ -1,3 +1,6 @@
+{{ 
+    config(materialized ='table')
+}}
 with condition as (
     select 
         conditions_patient_id as "Patient ID",

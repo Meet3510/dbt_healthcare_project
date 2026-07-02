@@ -1,3 +1,6 @@
+{{ 
+    config(materialized ='table')
+}}
 with careplans as (
     select *
     from 

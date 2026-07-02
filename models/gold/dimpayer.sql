@@ -1,3 +1,6 @@
+{{ 
+    config(materialized ='table')
+}}
 with payer as (
     select 
         payer_id as "Payer ID",

@@ -1,3 +1,6 @@
+{{ 
+    config(materialized ='table')
+}}
 with encounter as (
     select 
         encounters_id as "Encounter ID",
